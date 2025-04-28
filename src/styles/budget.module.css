@@ -1,0 +1,102 @@
+/* BudgetPage.css */
+
+.budgetContainer {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #cacaca;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+  }
+  
+  .setBudget {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+  }
+  
+  .inputField {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .inputValue {
+    width: 90%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  .inputValue:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .submitButton {
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 20px 0;
+    align-self: center;
+  }
+  
+  .submitButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .budgetForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+    
+  }
+  .graph{
+    background-color: #ffffff;
+  }
+  
+  .spending {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    text-align: center;
+    color: #333;
+  }
+  
+  .Actualbudget {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 60px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .overBudget {
+    color: #f44336; 
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .perfectBudget {
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  

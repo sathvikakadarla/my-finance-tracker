@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '@/styles/form.module.css'; 
 import Image from 'next/image';
 import TransactionChart from '@/components/transactionChart';
+import { toast } from 'react-hot-toast';
 
 
 export default function TransactionForm() {
@@ -35,7 +36,7 @@ export default function TransactionForm() {
     event.preventDefault();
 
     if (!amount || !date || !description || !category) {
-      alert('Please fill all fields');
+      toast.error('Please fill all fields');
       return;
     }
 
@@ -63,37 +64,69 @@ export default function TransactionForm() {
       }
 
       if (response.ok) {
-        alert(editId ? 'Transaction updated!' : 'Transaction recorded!');
+        toast.success(editId ? 'Transaction updated!' : 'Transaction recorded!');
         resetForm();
         if (showTransactions) fetchTransactions();
       } else {
         const data = await response.json();
-        alert(`Error: ${data.message || 'Something went wrong'}`);
+        toast.error(`Error: ${data.message || 'Something went wrong'}`);
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Something went wrong. Please try again.');
+      toast.error('Something went wrong. Please try again.');
     }
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this transaction?')) return;
-
-    try {
-      const response = await fetch(`/api/transactions?id=${id}`, { method: 'DELETE' });
-
-      if (response.ok) {
-        alert('Transaction deleted!');
-        if (showTransactions) fetchTransactions();
-      } else {
-        const data = await response.json();
-        alert(`Error: ${data.message || 'Something went wrong'}`);
-      }
-    } catch (error) {
-      console.error('Error deleting transaction:', error);
-      alert('Something went wrong. Please try again.');
-    }
+    toast((t) => (
+      <span style={{ fontSize: '18px' }}>
+        Are you sure?
+        <button
+          onClick={async () => {
+            toast.dismiss(t.id);
+            try {
+              const response = await fetch(`/api/transactions?id=${id}`, { method: 'DELETE' });
+              if (response.ok) {
+                toast.success('Transaction deleted!');
+                if (showTransactions) fetchTransactions();
+              } else {
+                const data = await response.json();
+                toast.error(`Error: ${data.message || 'Something went wrong'}`);
+              }
+            } catch (error) {
+              console.error('Error deleting transaction:', error);
+              toast.error('Something went wrong. Please try again.');
+            }
+          }}
+          style={{
+            marginLeft: '20px',
+            background: 'green',
+            color: 'white',
+            padding: '5px 10px',
+            borderRadius: '5px',
+            fontWeight: 'bold',
+          }}
+        >
+          Yes
+        </button>
+  
+        <button
+          onClick={() => toast.dismiss(t.id)}
+          style={{
+            marginLeft: '10px',
+            background: 'red',
+            color: 'white',
+            padding: '5px 10px',
+            borderRadius: '5px',
+            fontWeight: 'bold',
+          }}
+        >
+          No
+        </button>
+      </span>
+    ), { duration: Infinity }); // Make it stay forever until user clicks
   };
+  
 
   const handleEdit = (transaction) => {
     setAmount(transaction.amount);

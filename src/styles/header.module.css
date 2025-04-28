@@ -93,4 +93,39 @@
   .dashboardItem li strong {
     color: #222;
   }
+  .setBudgetButton {
+    background-color: #22c55e;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .setBudgetButton:hover {
+    background-color: #16a34a;
+  }
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.closeSidebarButton {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.closeSidebarButton:hover {
+  color: #e63946; 
+}
+
+
   
