@@ -1,0 +1,25 @@
+/* Footer container styles */
+.footerContainer {
+    background-color: #2d2d2d; /* Dark background */
+    color: #ffffff; /* White text */
+    padding: 20px 0; /* Padding for spacing */
+    text-align: center; /* Center text */
+    bottom: 0;
+    position: fixed;
+    width: 100%; /* Full width */
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif; /* Consistent font */
+  }
+  
+  /* Footer text styles */
+  .footerText {
+    font-size: 1rem;
+    margin: 0;
+    color: #bbb; /* Light gray for text */
+  }
+  
+  /* Hover effect for footer text */
+  .footerText:hover {
+    color: #4CAF50; /* Change color on hover */
+    cursor: pointer;
+  }
+  

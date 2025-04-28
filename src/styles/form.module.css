@@ -1,0 +1,208 @@
+/* Form container styles */
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Subtitle styles */
+  .subtitle {
+    text-align: center;
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    color: #046164;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Input field styles */
+  .inputField {
+    padding: 12px;
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #272626;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 90%;
+    margin-top: 10px;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .inputField:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Label styles */
+  .label {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #504dff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  /* Submit button styles */
+  .submitButton {
+    padding: 12px 18px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 15px;
+  }
+  
+  .submitButton:hover {
+    background-color: #45a049;
+  }
+  
+  .submitButton:active {
+    background-color: #388e3c;
+  }
+  
+  .submitButton:focus {
+    outline: none;
+  }
+  .note{
+    font-family:'Times New Roman', Times, serif;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 20px;
+  }
+  .transactionButton {
+    padding: 12px 18px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .buttonContainer{
+    padding-left: 570px;
+  }
+  
+  /* Cancel button for edit */
+  .cancelButton {
+    padding: 12px 18px;
+    font-size: 1rem;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .cancelButton:hover {
+    background-color: #e53935;
+  }
+  
+  .cancelButton:active {
+    background-color: #d32f2f;
+  }
+  
+  /* Toggle Transactions Button */
+  .toggleTransactionsButton {
+    padding: 12px 18px;
+    font-size: 1rem;
+    background-color: #ff9800; /* Orange for toggle */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 20px;
+  }
+  
+  .toggleTransactionsButton:hover {
+    background-color: #fb8c00;
+  }
+  
+  .toggleTransactionsButton:active {
+    background-color: #f57c00;
+  }
+  
+  /* Transaction list styles */
+  .transactionList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .transactionItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transactionItem span {
+    font-size: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #333;
+  }
+  
+  .transactionActions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .editButton,
+  .deleteButton {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .editButton {
+    background-color: #ffa500; /* Orange for edit */
+  }
+  
+  .editButton:hover {
+    background-color: #ff8c00;
+  }
+  
+  .editButton:active {
+    background-color: #e67e00;
+  }
+  
+  .deleteButton {
+    background-color: #f44336; /* Red for delete */
+  }
+  
+  .deleteButton:hover {
+    background-color: #e53935;
+  }
+  
+  .deleteButton:active {
+    background-color: #d32f2f;
+  }
+  
+  .reportgif{
+    padding-left: 590px;
+    margin-bottom: 90px;
+  }
