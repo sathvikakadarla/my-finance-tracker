@@ -9,9 +9,9 @@ export async function POST(request) {
   await connectionToDatabase(); // Connect first
 
   const body = await request.json();
-  const { amount, date, description } = body;
+  const { amount, date, description, category } = body;
 
-  if (!amount || !date || !description) {
+  if (!amount || !date || !description ||!category) {
     return NextResponse.json(
       { message: 'Amount, Date, and Description are required.' },
       { status: 400 }
@@ -20,9 +20,9 @@ export async function POST(request) {
 
   try {
     // Log transaction data to verify it's coming through
-    console.log('Transaction Data:', { amount, date, description });
+    console.log('Transaction Data:', { amount, date, description, category });
 
-    const newTransaction = await Transaction.create({ amount, date, description });
+    const newTransaction = await Transaction.create({ amount, date, description, category });
     
     // Log the result of the insert operation
     console.log('New Transaction Created:', newTransaction);
@@ -86,9 +86,9 @@ export async function PUT(request) {
   await connectionToDatabase();
 
   const body = await request.json();
-  const { id, amount, date, description } = body;
+  const { id, amount, date, description, category } = body;
 
-  if (!id || !amount || !date || !description) {
+  if (!id || !amount || !date || !description || !category) {
     return NextResponse.json(
       { message: 'ID, Amount, Date, and Description are required for updating.' },
       { status: 400 }
@@ -98,7 +98,7 @@ export async function PUT(request) {
   try {
     const updatedTransaction = await Transaction.findByIdAndUpdate(
       id,
-      { amount, date, description },
+      { amount, date, description, category },
       { new: true }
     );
 

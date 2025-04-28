@@ -1,23 +1,26 @@
-'use client'; // Ensure this is a client-side component
+'use client';
 
-import { React, useState, useEffect } from 'react';
-import styles from '@/styles/form.module.css'; // Your CSS Module
+import React, { useState, useEffect } from 'react';
+import styles from '@/styles/form.module.css'; 
 import Image from 'next/image';
+import TransactionChart from '@/components/transactionChart';
+
 
 export default function TransactionForm() {
   const [transactions, setTransactions] = useState([]);
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
-  const [editId, setEditId] = useState(null); // Track if editing
-  const [showTransactions, setShowTransactions] = useState(false); // Toggle to show/hide transactions
+  const [category, setCategory] = useState('');
+  const [editId, setEditId] = useState(null);
+  const [showTransactions, setShowTransactions] = useState(false);
 
-  // Fetch transactions on mount
+  const categories = ['Food', 'Rent', 'Transport', 'Shopping', 'Entertainment', 'Other']; 
+
   useEffect(() => {
-    if (showTransactions) fetchTransactions(); // Only fetch when showing transactions
+    if (showTransactions) fetchTransactions();
   }, [showTransactions]);
 
-  // Function to fetch all transactions
   const fetchTransactions = async () => {
     try {
       const response = await fetch('/api/transactions');
@@ -28,11 +31,10 @@ export default function TransactionForm() {
     }
   };
 
-  // Handle form submission for add or edit
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!amount || !date || !description) {
+    if (!amount || !date || !description || !category) {
       alert('Please fill all fields');
       return;
     }
@@ -41,19 +43,18 @@ export default function TransactionForm() {
       amount: Number(amount),
       date,
       description,
+      category,
     };
 
     try {
       let response;
       if (editId) {
-        // Update existing transaction
         response = await fetch('/api/transactions', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: editId, ...transactionData }),
         });
       } else {
-        // Create new transaction
         response = await fetch('/api/transactions', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -64,7 +65,7 @@ export default function TransactionForm() {
       if (response.ok) {
         alert(editId ? 'Transaction updated!' : 'Transaction recorded!');
         resetForm();
-        if (showTransactions) fetchTransactions(); // Refresh list if showing
+        if (showTransactions) fetchTransactions();
       } else {
         const data = await response.json();
         alert(`Error: ${data.message || 'Something went wrong'}`);
@@ -75,18 +76,15 @@ export default function TransactionForm() {
     }
   };
 
-  // Handle delete
   const handleDelete = async (id) => {
     if (!confirm('Are you sure you want to delete this transaction?')) return;
 
     try {
-      const response = await fetch(`/api/transactions?id=${id}`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(`/api/transactions?id=${id}`, { method: 'DELETE' });
 
       if (response.ok) {
         alert('Transaction deleted!');
-        if (showTransactions) fetchTransactions(); // Refresh list if showing
+        if (showTransactions) fetchTransactions();
       } else {
         const data = await response.json();
         alert(`Error: ${data.message || 'Something went wrong'}`);
@@ -97,23 +95,22 @@ export default function TransactionForm() {
     }
   };
 
-  // Handle edit
   const handleEdit = (transaction) => {
     setAmount(transaction.amount);
-    setDate(transaction.date.split('T')[0]); // Remove time part
+    setDate(transaction.date.split('T')[0]);
     setDescription(transaction.description);
+    setCategory(transaction.category || 'Food'); 
     setEditId(transaction._id);
   };
 
-  // Reset form
   const resetForm = () => {
     setAmount('');
     setDate('');
     setDescription('');
+    setCategory(''); 
     setEditId(null);
   };
 
-  // Toggle showing transactions
   const toggleTransactions = () => {
     setShowTransactions(!showTransactions);
   };
@@ -163,10 +160,28 @@ export default function TransactionForm() {
           />
         </div>
 
+        <div>
+        <label htmlFor="category" className={styles.label}>Category:</label>
+          <select
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className={styles.inputField}
+            required
+          >
+            <option value="">Select Category</option> 
+              {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+              ))}
+          </select>
+        </div>
+
         <button type="submit" className={styles.submitButton}>
           {editId ? 'Update Transaction' : 'Submit'}
         </button>
-        
+
         {editId && (
           <button
             type="button"
@@ -177,19 +192,24 @@ export default function TransactionForm() {
           </button>
         )}
       </form>
-      <p className={styles.note}>want to check you transactions</p>
+
+      <p className={styles.note}>Want to check your transactions?</p>
+
       <div className={styles.buttonContainer}>
         <button onClick={toggleTransactions} className={styles.transactionButton}>
-            {showTransactions ? 'Hide My Transactions' : 'Show My Transactions'}
+          {showTransactions ? 'Hide My Transactions' : 'Show My Transactions'}
         </button>
       </div>
+
       {showTransactions && (
         <>
           <h3 className={styles.subtitle}>Transaction List</h3>
           <ul className={styles.transactionList}>
             {transactions.map((txn) => (
               <li key={txn._id} className={styles.transactionItem}>
-                <span><strong>₹{txn.amount}</strong> - {txn.description} - {new Date(txn.date).toLocaleDateString()}</span>
+                <span>
+                  <strong>₹{txn.amount}</strong> - {txn.description} ({txn.category}) - {new Date(txn.date).toLocaleDateString()}
+                </span>
                 <div className={styles.transactionActions}>
                   <button onClick={() => handleEdit(txn)} className={styles.editButton}>Edit</button>
                   <button onClick={() => handleDelete(txn._id)} className={styles.deleteButton}>Delete</button>
@@ -197,10 +217,11 @@ export default function TransactionForm() {
               </li>
             ))}
           </ul>
+          <TransactionChart transactions={transactions} /> 
         </>
       )}
+
       <Image src="/images/report.gif" alt="report" width={200} height={200} className={styles.reportgif}/>
     </div>
   );
 }
-

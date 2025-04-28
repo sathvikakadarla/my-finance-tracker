@@ -1,11 +1,11 @@
-// src/global.d.ts
+import { MongoClient } from 'mongodb';
+
 declare global {
-    namespace NodeJS {
-      interface Global {
-        _mongoClientPromise?: Promise<any>; // Declaring _mongoClientPromise as a property of type Promise<any>
-      }
+  namespace NodeJS {
+    interface Global {
+      _mongoClientPromise?: Promise<MongoClient>;
     }
   }
-  
-  export {}; // To ensure this is treated as a module
-  
+}
+
+export {};

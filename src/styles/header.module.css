@@ -5,5 +5,92 @@
     color: #ffffff;
     padding: 10px;
     margin-bottom: 20px;
-    background-color: #9ca0a3;
+    margin-left: 460px;
   }
+  .headerContainer {
+    position: relative;
+  }
+  
+  /* Top Header Bar */
+  .topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #0070f3;
+    color: white;
+  }
+  
+  /* Hamburger Menu Button */
+  .menuButton {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100vh;
+    background-color: #ffffff;
+    padding: 20px;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  
+  /* When sidebar is open */
+  .sidebarOpen {
+    left: 0;
+  }
+  
+  /* Content inside sidebar */
+  .sidebarContent {
+    margin-top: 40px;
+    color:#333;
+  }
+  
+  /* Dashboard Items */
+  .dashboardItem {
+    margin-bottom: 40px;
+  }
+  
+  .dashboardItem h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#cbdff7;
+  }
+  
+  .dashboardItem p {
+    font-size: 18px;
+    margin-top: 8px;
+    color: #333;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+  }
+  
+  /* Transaction and Category Lists */
+  .dashboardItem ul {
+    list-style: none;
+    padding-left: 0;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+  }
+  
+  .dashboardItem li {
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #555;
+  }
+  
+  .dashboardItem li strong {
+    color: #222;
+  }
+  
